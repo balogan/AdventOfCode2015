@@ -3,11 +3,8 @@ use std::io::prelude::*;
 use std::io::BufReader;
 use std::str::Chars;
 
-/// Get the title of a Markdown file.
-///
-/// Reads the first line of a Markdown file, strips any hashes and
-/// leading/trailing whitespace, and returns the title.
-fn read_line<R>(mut rdr: R) -> String
+/// Get first line of a file
+fn get_first_line<R>(mut rdr: R) -> String
 where
     R: BufRead,
 {
@@ -58,7 +55,7 @@ fn main() {
     };
     let buffer = BufReader::new(file);
 
-    let line = read_line(buffer);
+    let line = get_first_line(buffer);
     // TODO: deduplicate this
     let chars = line.chars();
     let chars2 = line.chars();
